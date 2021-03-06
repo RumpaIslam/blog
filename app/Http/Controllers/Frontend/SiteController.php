@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
@@ -19,14 +19,27 @@ class SiteController extends Controller
         
         $request->validate([
 
-            'name'     => 'required',
-            'email'    => 'required',
-            'password' => 'required'
+            'name'     => 'required | string',
+            'email'    => 'required | email',
+            'password' => 'required | min:4'
         ]);
+
+
+
+        $signup =New User();
+
+            $signup->student_name=$request->name;
+            $signup->student_email=$request->email;
+            $signup->student_password=md5($request->password);
+            $signup->save();
+    
+    
+    
+            return back()->with('success', 'User created successfully!!!');
     
     }
 
-
+   
 
 }
 

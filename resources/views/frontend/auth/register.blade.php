@@ -16,23 +16,44 @@ User Registration Form
         </div>
 
         <div class="card-body">
-        
-            <form action="{{route('registration')}}" method="POST"> 
+            <!-- @if($errors -> any())
+            <div class="alert alert-danger">
+
+            <ul>
+                @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+                @endforeach
+            </ul>
+            
+            
+            </div>
+            @endif -->
+
+            <form action="{{route('registration')}}" method="POST" enctype="multipart/form-data"> 
             @csrf
             <div class="form-group">
-            <label>Name:</label>
-            <input class="form-control" type="text" name="name" id="name" placeholder="Enter your name">
+            <label for="name">Name:</label>
+            <input class="form-control" type="text" name="name" id="name" value="{{old('name')}}" placeholder="Enter your name">
             </div>
+            @error('name') <span class="text-danger">{{$message}}</span>@enderror
             
             <div class="form-group">
-            <label>Email:</label>
-            <input class="form-control" type="email" name="email" id="email" placeholder="Enter your email address">
+            <label for="email">Email:</label>
+            <input class="form-control" type="email" name="email" id="email" value="{{old('email')}}" placeholder="Enter your email address">
             </div>
+            @error('email') <span class="text-danger">{{$message}}</span>@enderror
 
             <div class="form-group">
-            <label>Password</label>
-            <input class="form-control" type="password" name="password" id="password" placeholder="Enter your password">
+            <label for="password">Password</label>
+            <input class="form-control" type="password" name="password" value="{{old('password')}}" id="password" placeholder="Enter your password">
             </div>
+            @error('password') <span class="text-danger">{{$message}}</span>@enderror
+
+            <div class="form-group">
+            <label for="photo">Profile Photo</label>
+            <input type="file" name="photo" id="photo" >
+            </div>
+            @error('password') <span class="text-danger">{{$message}}</span>@enderror
 
             <div class="form-group text-center">
             <button type="submit" class="btn btn-primary">Submit</button>
