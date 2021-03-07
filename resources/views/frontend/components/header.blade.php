@@ -21,6 +21,13 @@
           <li class="nav-item">
             <a class="nav-link" href="">Contact</a>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('user.showregistration')}}">Registration</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('user.login-form')}}">Login</a>
+          </li>
         </ul>
       </div>
     </div>

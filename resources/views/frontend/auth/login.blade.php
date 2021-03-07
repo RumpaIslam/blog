@@ -3,7 +3,7 @@
 
 @section('title')
 
-User Registration Form
+User Login
 
 @endsection
 
@@ -12,18 +12,18 @@ User Registration Form
 
       <div class="card mt-3">
         <div class="card-header">
-          <h3>User Registration</h3>      
+          <h3>User Logiin</h3>      
         </div>
 
         <div class="card-body">
 
-
+<!-- 
         @if (session('message'))
         <div class="alert alert-success">
         {{session('message')}}
         
         </div>
-        @endif
+        @endif -->
              <!-- @if($errors -> any())
             <div class="alert alert-danger">
 
@@ -37,14 +37,9 @@ User Registration Form
             </div>
             @endif -->
 
-            <form action="{{route('user.registration')}}" method="POST" enctype="multipart/form-data"> 
+            <form action="{{route('user.login')}}" method="POST"> 
             @csrf
-            <div class="form-group">
-            <label for="name">Name:</label>
-            <input class="form-control" type="text" name="name" id="name" value="{{old('name')}}" placeholder="Enter your name">
-            </div>
-            @error('name') <span class="text-danger">{{$message}}</span>@enderror
-            
+                       
             <div class="form-group">
             <label for="email">Email:</label>
             <input class="form-control" type="email" name="email" id="email" value="{{old('email')}}" placeholder="Enter your email address">
@@ -57,19 +52,8 @@ User Registration Form
             </div>
             @error('password') <span class="text-danger">{{$message}}</span>@enderror
 
-
-            <div class="form-group">
-            <label for="password">Confirm Password</label>
-            <input class="form-control" type="password" name="confirm_password"  id="confirm_password" placeholder="Enter your password">
-            </div>
-
-            <div class="form-group">
-            <label for="photo">Profile Photo</label>
-            <input type="file" name="photo" id="photo" >
-            </div>
-            @error('photo') <span class="text-danger">{{$message}}</span>@enderror
             <div class="form-group text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Login</button>
             </div>
 
             </form>

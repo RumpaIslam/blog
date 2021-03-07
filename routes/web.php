@@ -21,5 +21,12 @@ Route::get('/', function () {
 
 //Route::get('/user/register', [SiteController::class, 'showRegisterForm']);
 
-Route::get('/user/register','Frontend\SiteController@showRegisterForm')->name('showregistration');
-Route::post('/user/register','Frontend\SiteController@Register')->name('registration');
+
+Route::prefix('user')->name('user.')->group(function(){
+Route::get('/login','Frontend\SiteController@loginForm')->name('login-form');
+Route::post('/login','Frontend\SiteController@login')->name('login');
+Route::get('/register','Frontend\SiteController@showRegisterForm')->name('showregistration');
+Route::post('/register','Frontend\SiteController@register')->name('registration');
+
+
+});
