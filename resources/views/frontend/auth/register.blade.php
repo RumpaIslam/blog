@@ -24,6 +24,16 @@ User Registration Form
         
         </div>
         @endif
+        @if($errors -> any())
+            <div class="alert alert-danger">
+
+            {{session('message')}}
+             
+                                   
+            </div>
+            @endif
+
+        
              <!-- @if($errors -> any())
             <div class="alert alert-danger">
 
@@ -63,10 +73,10 @@ User Registration Form
             <input class="form-control" type="password" name="confirm_password"  id="confirm_password" placeholder="Enter your password">
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
             <label for="photo">Profile Photo</label>
             <input type="file" name="photo" id="photo" >
-            </div>
+            </div> -->
             @error('photo') <span class="text-danger">{{$message}}</span>@enderror
             <div class="form-group text-center">
             <button type="submit" class="btn btn-primary">Submit</button>

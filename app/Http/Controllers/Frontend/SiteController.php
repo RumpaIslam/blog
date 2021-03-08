@@ -46,10 +46,11 @@ class SiteController extends Controller
                 'password' => bcrypt($request ->password)
 
             ]);
-
+            session() -> flash('type', 'success');
             session() -> flash('message', 'User registration Successful.');
         } catch (Exception $e) {
-            session() -> flash('message', '!!');
+            session() -> flash('type', 'danger');
+            session() -> flash('message', 'failed');
         }
 
         return redirect() -> back();
@@ -67,13 +68,13 @@ class SiteController extends Controller
 
         if(auth()-> attempt($data)){
 
-            return "y";
-
+            return redirect('/');
 
         }
         else{
-
-            return "n";
+            session()->flash('type','danger');
+            session()->flash('message','Login failed');
+            return redirect()->back();
 
         }
     }
@@ -81,9 +82,18 @@ class SiteController extends Controller
 
     public function loginForm()
     {
-        return view(view:'frontend.auth.login');
+        return view('frontend.auth.login');
     }
 
+
+
+
+    public function logout(){
+
+        auth()->logout();
+        return redirect('/');
+
+    }
 
     
 }

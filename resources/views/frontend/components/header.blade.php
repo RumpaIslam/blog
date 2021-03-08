@@ -21,13 +21,26 @@
           <li class="nav-item">
             <a class="nav-link" href="">Contact</a>
           </li>
-
+          @guest
           <li class="nav-item">
             <a class="nav-link" href="{{route('user.showregistration')}}">Registration</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{route('user.login-form')}}">Login</a>
           </li>
+          @endguest
+
+          @auth
+
+          <li class="nav-item">
+            <a class="nav-link" href=""> {{auth()->user()->name}}</a>
+          </li>
+         
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('user.logout')}}">Logout</a>
+          </li>
+          @endauth
+
         </ul>
       </div>
     </div>
