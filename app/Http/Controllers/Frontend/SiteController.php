@@ -69,7 +69,7 @@ class SiteController extends Controller
 
         if(auth()-> attempt($data)){
 
-            return redirect('/');
+            return redirect('dashboard');
 
         }
         else{
