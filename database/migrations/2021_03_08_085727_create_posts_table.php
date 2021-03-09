@@ -19,8 +19,9 @@ class CreatePostsTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->string('title')->unique();
             $table->string('slug')->unique();
-            $table->string('image',30)->unique();
+            $table->string('image',255)->unique();
             $table->longText('desc')->nullable();
+            $table->enum('status',['active','inactive']);
             $table->timestamps();
 
            
