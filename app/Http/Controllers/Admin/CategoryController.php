@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -14,7 +16,13 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        
+        $categories=Category::SimplePaginate(5);
+        // return $categories;
+        
+        return view ('admin.category.manage',compact('categories'));
+
+
     }
 
     /**
@@ -80,6 +88,12 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cat=Category::find($id);
+        $cat->delete();
+        session()-> flush('type','success');
+        session()-> flush('message','Deleted successfully.');
+        return redirect()->back();
+
+
     }
 }

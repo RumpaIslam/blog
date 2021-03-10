@@ -27,10 +27,23 @@ class CategoriesTableSeeder extends Seeder
                 'user_id' => rand(1, 21),
                  'name' => $name,
                  'slug' => strtolower(str_replace(' ', '-', $name)),
-                 'status' =>'active'
+                 'status' =>$this->randstatus()
                  
                  ]);
         }
 
     }
+
+    private function randstatus(){
+
+     $status=[
+    'active'=>'active',
+    'inactive'=> 'inactive'
+     ];
+     return array_rand($status);
+
+    }
+
+
+
 }

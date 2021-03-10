@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 use Exception;
-use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -69,7 +69,7 @@ class SiteController extends Controller
 
         if(auth()-> attempt($data)){
 
-            return redirect('dashboard');
+            return redirect('admin/dashboard');
 
         }
         else{
