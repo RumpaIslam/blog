@@ -6,12 +6,12 @@ Manage Categories
 
 
 @section('content')
+<div class="container m-5">
+<h4 class="text-center m-2">Manage Category</h4>
 
-<h4 class="text-center m-5">Manage Category</h4>
-
-      <div class="alert alert-{{session('type')}}">{{session('message')}}
-      
-      </div>  
+@if(session('message'))
+      <div class="alert alert-{{session('type')}}">{{session('message')}}</div>  
+      @endif
 <table class="table table-bordered table-striped text-center">
 
     <tr>
@@ -30,6 +30,7 @@ Manage Categories
         <td>{{$category->slug}}</td>
         <td>{{$category->status}}</td>
         <td>
+        <a class="btn btn-info btn-sm" href="{{route('admin.category.show',$category->id)}}">View</a>
         <form action="{{route('admin.category.destroy', $category->id)}}" method="post">
         @csrf
         @method('DELETE')
@@ -44,5 +45,5 @@ Manage Categories
 </table>
 
 {{$categories->links()}}
-
+</div>
 @endsection

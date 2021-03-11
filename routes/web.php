@@ -30,11 +30,13 @@ Route::prefix('user')->name('user.')->group(function(){
 });
 
 //Admin routes
-Route::prefix('admin')->name('admin.')->group(function(){
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
     Route::get('/dashboard','Admin\DashboardController@index')->name('dashboard');
     
     Route::prefix('category')->name('category.')->group(function(){
         Route::get('/', 'Admin\CategoryController@index')->name('index');
+        Route::get('/{id}', 'Admin\CategoryController@show')->name('show');
+
         Route::get('/create', 'Admin\CategoryController@create')->name('create');
         Route::post('/store', 'Admin\CategoryController@store')->name('store');
         Route::delete('/{id}', 'Admin\CategoryController@destroy')->name('destroy');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use Exception;
 use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 
@@ -32,7 +33,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.category.create');
     }
 
     /**
@@ -43,7 +44,39 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $request->validate([
+           'name'=>'required|string|unique:categories',
+           'status' =>'required|string',
+         
+       ]);
+       //dd(auth()->id());
+       try{
+        // $category=new Category();
+        // $category->user_id = auth()->id();
+        // $category->name=$request->name;
+        // $category->status=$request->status;
+        // $category->slug=strtolower(str_replace(' ', '-', $request->name));
+        // $category->save();
+     
+        Category::create([
+        'user_id' => auth()->id(),
+        'name'    => $request->name,
+        'status'  => $request->status,
+        'slug'    => strtolower(str_replace(' ', '-', $request->name)),
+        ]);
+
+        session()-> flash('type','success');
+        session()-> flash('message','Category Created Successfully.');
+
+
+        }catch(Exception $e){
+        session()-> flash('type','danger');
+        session()-> flash('message',$e->getMessage());
+
+        }
+
+        return redirect()->back();
+        
     }
 
     /**
@@ -88,12 +121,25 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $cat=Category::find($id);
-        $cat->delete();
-        session()-> flush('type','success');
-        session()-> flush('message','Deleted successfully.');
+
+        try{
+
+            $cat=Category::find($id);
+            $cat->delete();
+            session()-> flash('type','success');
+            session()-> flash('message','Deleted successfully.');
+
+
+        }
+        catch(Exception $e){
+            session()-> flash('type','danger');
+            session()-> flash('message','Failed to delete!!');
+
+        }
+
         return redirect()->back();
+        }
+       
+    
 
-
-    }
 }

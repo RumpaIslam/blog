@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+use Session;
+
 class SiteController extends Controller
 {
     public function showRegisterForm()
@@ -92,7 +94,9 @@ class SiteController extends Controller
     public function logout(){
 
         auth()->logout();
+//Session::flush();
         return redirect('/');
+
 
     }
 
