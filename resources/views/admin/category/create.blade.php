@@ -1,3 +1,4 @@
+
 @extends('admin.components.layouts')
 
 @section('title')

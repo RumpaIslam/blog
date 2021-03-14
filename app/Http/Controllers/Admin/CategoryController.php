@@ -33,8 +33,13 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+       
+        
+       //dd('hello');
+       return view('admin.category.create');
+       
     }
+   
 
     /**
      * Store a newly created resource in storage.
@@ -87,7 +92,10 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+      //  dd($id);
+     $category=Category::findorfail($id);
+     //return $category;
+     return view('admin.category.view',compact('category'));
     }
 
     /**
@@ -98,7 +106,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+     
     }
 
     /**

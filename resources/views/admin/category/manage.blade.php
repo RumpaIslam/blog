@@ -31,6 +31,7 @@ Manage Categories
         <td>{{$category->status}}</td>
         <td>
         <a class="btn btn-info btn-sm" href="{{route('admin.category.show',$category->id)}}">View</a>
+        <a class="btn btn-info btn-sm m-2" href="{{route('admin.category.edit',$category->id)}}">edit</a>
         <form action="{{route('admin.category.destroy', $category->id)}}" method="post">
         @csrf
         @method('DELETE')
