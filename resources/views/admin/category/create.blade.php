@@ -41,7 +41,10 @@ Create Categories
                 @csrf
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input class="form-control" type="name" name="name" id="name" placeholder="Enter category name">
+                        <input class="form-control is-invalid @enderror" type="name" name="name" id="name" placeholder="Enter category name">
+                        @error('name')
+                        <span class = "text-danger font-italic">{{ $message}}</span>
+                        @enderror
                     </div>
                    
                     <div class="form-group">

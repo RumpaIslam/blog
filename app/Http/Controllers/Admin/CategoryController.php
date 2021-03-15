@@ -25,6 +25,18 @@ class CategoryController extends Controller
 
 
     }
+    public function get_list_api()
+    {
+        
+        //$categories=Category::all();
+        
+        $data =Category::all();
+        return response()->json(compact('data'),200);
+        
+        
+
+
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -106,6 +118,13 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
+
+        $category=Category::find($id);
+        if($category) return view('admin.category.edit',compact('category'));
+
+        else return redirect()->back();
+        
+        
      
     }
 
@@ -118,7 +137,35 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      
+        $request->validate([
+            'name'=>'required|string|unique:categories',
+            'status' =>'required|string',
+          
+        ]);
+
+            try{
+                    $category=Category::find($id);
+
+                    $category->user_id = auth()->id();
+                    $category->name    = $request->name;
+                    $category->status  = $request->status;
+                    $category->slug    = strtolower(str_replace(' ', '-', $request->name));
+                    $category->update();
+
+                    session()-> flash('type','success');
+                    session()-> flash('message','Category Created Successfully.');
+
+            }catch(Exception $e){
+                session()-> flash('type','danger');
+                session()-> flash('message',$e->getMessage());
+        
+                }
+        
+                return redirect()->back();
+        
+     
+
     }
 
     /**

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 use Exception;
-// use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -71,6 +71,12 @@ class SiteController extends Controller
 
         if(auth()-> attempt($data)){
 
+        //   $user_id=Auth::id();
+           $get_user_type=User::where('id',Auth::id())->first();
+           // dd($get_user_type);
+           session()->put('user.type',$get_user_type->user_type);
+
+         //  dd(Session::all());
             return redirect('admin/dashboard');
 
         }
@@ -94,7 +100,8 @@ class SiteController extends Controller
     public function logout(){
 
         auth()->logout();
-//Session::flush();
+
+        
         return redirect('/');
 
 

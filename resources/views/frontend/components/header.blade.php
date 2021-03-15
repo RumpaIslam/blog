@@ -33,7 +33,7 @@
           @auth
 
           <li class="nav-item">
-            <a class="nav-link" href=""> {{auth()->user()->name}}</a>
+            <a class="nav-link" href="{{route('admin.dashboard')}}"> {{auth()->user()->name}}</a>
           </li>
          
           <li class="nav-item">
