@@ -18,7 +18,7 @@ Create Categories
 
     <div class="card">
 
-        <div class="card-header text-center">Create Category</div>
+        <div class="card-header text-center">Create Post</div>
 
         <div class="card-body">
 
@@ -29,7 +29,7 @@ Create Categories
             <form action="{{route('admin.category.store')}}" method="POST"> 
                 @csrf
                     <div class="form-group">
-                        <label for="name">Name:</label>
+                        <label for="name">Title:</label>
                         <input class="form-control" type="name" name="name" id="name" placeholder="Enter category name">
                         @error('name')
                         <span class = "text-danger font-italic">{{ $message}}</span>

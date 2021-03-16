@@ -139,7 +139,7 @@ class CategoryController extends Controller
     {
       
         $request->validate([
-            'name'=>'required|string|unique:categories',
+            'name'=>'required|string|unique:categories,id,'.$id,
             'status' =>'required|string',
           
         ]);
@@ -154,7 +154,7 @@ class CategoryController extends Controller
                     $category->update();
 
                     session()-> flash('type','success');
-                    session()-> flash('message','Category Created Successfully.');
+                    session()-> flash('message','Category updated Successfully.');
 
             }catch(Exception $e){
                 session()-> flash('type','danger');

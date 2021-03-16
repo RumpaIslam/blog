@@ -13,14 +13,22 @@
           <!-- <li class="nav-item">
             <a class="nav-link {{request()->is('admin/dashboard')?'active':''}}" href="{{route('admin.dashboard')}}">Dashboard</a>
           </li> -->
-          <div class="dropdown">
+          <div class="dropdown m-2">
             <button class="btn btn-secondary dropdown-toggle"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category 
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item {{request()->is('admin/category/create')?'active':''}}" href="{{route('admin.category.create')}}">Add Category</a>
                 <a class="dropdown-item {{request()->is('admin/category')?'active':''}}" href="{{route('admin.category.index')}}">Manage Category</a>
             </div>
-      </div>
+          </div>
+          <div class="dropdown m-2">
+            <button class="btn btn-secondary dropdown-toggle"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Post 
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item {{request()->is('admin/post/create')?'active':''}}" href="{{route('admin.post.create')}}">Add post</a>
+                <a class="dropdown-item {{request()->is('admin/post')?'active':''}}" href="{{route('admin.post.index')}}">Manage posts</a>
+            </div>
+          </div>
          
           <li class="nav-item">
             <a class="nav-link {{request()->is('admin/dashboard')?'active':''}}" href="{{route('user.logout')}}">Logout</a>

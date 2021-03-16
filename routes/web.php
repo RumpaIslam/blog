@@ -28,18 +28,19 @@ Route::prefix('user')->name('user.')->group(function(){
     Route::post('/register','Frontend\SiteController@register')->name('registration');
 
 });
-// Route::get('/create', function () {
 
-//     //dd('helolo');
-//     return view('admin.category.create');
-// });
+
 
 //Admin routes
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
     Route::get('/dashboard','Admin\DashboardController@index')->name('dashboard');
     
-   
+   //category routes
     Route::resource('category', '\App\Http\Controllers\Admin\CategoryController');
+   //post routes
+    Route::resource('post', '\App\Http\Controllers\Admin\PostController');
+
+
 
 
 });
