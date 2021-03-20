@@ -9,13 +9,16 @@ view Categories
 @section('content')
 
 <div class="container m-5">
-    <h4 class="text-center m-2">View Category</h4>
+    <h4 class="text-center m-5">View Category</h4>
 
     <table class="table table-bordered" >
         <tr>
-            <th>Name</th>
-            <td>{{ $category->name }}</td>
+            <th>{{$post->title}}</th>
+            <td>{{ $post->desc }}</td>
         </tr>
+        
+
+        
 
 
 

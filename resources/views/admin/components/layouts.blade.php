@@ -13,7 +13,7 @@
  @include('admin.components.header')
 
   <!-- Page Content -->
-  <div style="min-height:575px !important;">
+  <div style="min-height:800px !important;">
 
     <div class="row">
 

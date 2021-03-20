@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Exception;
 
 class PostController extends Controller
 {
@@ -28,7 +29,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.post.create');
+         // dd('tt');
+         return view('admin.post.create');
     }
 
     /**
@@ -50,7 +52,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post=Post::find($id);
+        return view('admin.post.view', compact('post'));
+
     }
 
     /**
@@ -63,7 +67,9 @@ class PostController extends Controller
     {
         
         $post=Post::find($id);
-        if($post) return view('admin.post.edit',compact('post'));
+        if ($post) {
+            return view('admin.post.edit', compact('post'));
+        }
 
         else return redirect()->back();
     }
@@ -77,7 +83,31 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title'=>'required|string|unique:posts,id,'.$id,
+            'status' =>'required|string',
+          
+        ]);
+
+            try{
+                    $post=Post::find($id);
+
+                    $post->user_id  = auth()->id();
+                    $post->title    = $request->title;
+                    $post->desc     = $request->desc;
+                    $post->status   = $request->status;
+                    $post->update();
+
+                    session()-> flash('type','success');
+                    session()-> flash('message','Post updated Successfully.');
+
+            }catch(Exception $e){
+                session()-> flash('type','danger');
+                session()-> flash('message',$e->getMessage());
+        
+                }
+        
+                return redirect()->back();
     }
 
     /**
