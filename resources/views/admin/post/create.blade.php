@@ -10,7 +10,7 @@ Add post
 
 <h4 class="text-center m-5"></h4>
 
-<div class="col-md-15">
+<div class="col-md-6 container">
 
             @if($errors -> any())
             <div class="alert alert-danger">
@@ -32,24 +32,27 @@ Add post
 
         <div class="card-body">
 
-            <!-- @if(session('message'))
+            @if(session('message'))
             <div class="alert alert-{{session('type')}}">{{session('message')}}</div>  
-            @endif -->
+            @endif
 
             <form action="{{route('admin.post.store')}}" method="POST"> 
                 @csrf
-                @method ('PUT')
+               
 
                     <div class="form-group">
                         <label for="title">Category:</label>
-                        <select>
+                        <select name="category" id="category" class="form-control">
                         
                         <option value="">Select Category</option>
-                        @foreach
 
-                        <option>{{$category->name}}</option>
+                          
+                          @foreach( $categories as $category)
+                            <option value="{{$category->id}}">{{$category->name}}</option>
 
-                        @endforeach
+                            @endforeach
+
+                    
                         
                         </select>
                                         
@@ -66,13 +69,21 @@ Add post
                     </div>
                    
                     <div class="form-group">
+                        <label for="image">Image</label><br>
+                        <input type="file" name="image" id="image" >
+                                                
+                    </div>
+
+
+                    <div class="form-group">
                         <label for="status">Post Details</label><br>
-                        <input class="form-control " type="text" name="desc" id="desc" >
+                       <textarea class="form-control" id="desc" name="desc"></textarea>
                         <!-- @error('desc')
                         <span class = "text-danger font-italic">{{ $message}}</span>
                         @enderror -->
                             
                     </div>
+
 
                     <div class="form-group">
                             <label for="status">Status:</label><br>
@@ -87,9 +98,11 @@ Add post
                               
                             </div>
                     </div>
+
+                  
         
-                    <div class="form-group card-footer text-center">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="form-group card-footer text-right">
+                        <button type="submit" class="btn btn-primary">Create</button>
                     </div>
             </form>
         

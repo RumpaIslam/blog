@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -29,8 +31,8 @@ class PostController extends Controller
      */
     public function create()
     {
-         // dd('tt');
-         return view('admin.post.create');
+         $categories=Category::all();
+         return view('admin.post.create' , compact('categories'));
     }
 
     /**
@@ -41,7 +43,52 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+
+       
+        $request->validate([
+
+            'category'  => 'required',
+            'title'     => 'required | min:10 |max:250',
+            'image'     => 'required',
+            'desc'      => 'required | string | min:20 ',
+            'status'    => 'required |string',
+
+
+        ]);
+
+        // dd($request);
+
+        try{
+
+            Post::create([
+
+            'user_id'  => auth()->id(),
+            'category_id'  => $request->category,
+            'title'     => $request->title,
+            'image'     => 'image.png',
+            'desc'      => $request->desc,
+            'slug'        => strtolower(str_replace(' ', '-', $request->title)),
+            'status'    => $request->status,
+                
+
+            ]);
+
+
+                
+            session()-> flash('type','success');
+            session()-> flash('message','Post updated Successfully.');
+
+        }catch(Exception $e){
+
+            session()-> flash('type','danger');
+            session()-> flash('message',$e->getMessage());
+
+
+        }
+
+        return redirect()->back();
+
     }
 
     /**
