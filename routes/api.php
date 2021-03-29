@@ -21,8 +21,17 @@ use Illuminate\Support\Facades\Route;
 Route::post('register', 'Api\UserController@register');
 Route::post('login', 'Api\UserController@authenticate');
 
+
+
 Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('user', 'Api\UserController@getAuthenticatedUser');
     Route::get('categories', 'Admin\CategoryController@get_list_api');
 
 });
+
+
+
+//simple api=====================================>>
+
+Route::get('data' , 'testapiController@getdata');
+
