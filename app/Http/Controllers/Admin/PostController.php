@@ -56,20 +56,29 @@ class PostController extends Controller
 
 
         ]);
+//dd($request);
+         $photo = $request ->file(key:'image');
 
-        // dd($request);
+        if($photo->isValid()){
+
+            $file_name=rand(11111,999999) . date('ymdhis.') . $photo ->getClientOriginalExtension();
+
+            $photo->storeAs('users', $file_name);
+
+        }
+        
 
         try{
 
             Post::create([
 
-            'user_id'  => auth()->id(),
+            'user_id'      => auth()->id(),
             'category_id'  => $request->category,
-            'title'     => $request->title,
-            'image'     => 'image.png',
-            'desc'      => $request->desc,
-            'slug'        => strtolower(str_replace(' ', '-', $request->title)),
-            'status'    => $request->status,
+            'title'        => $request->title,
+            'image'        => $file_name,
+            'desc'         => $request->desc,
+            'slug'         => strtolower(str_replace(' ', '-', $request->title)),
+            'status'       => $request->status,
                 
 
             ]);

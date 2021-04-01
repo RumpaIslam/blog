@@ -36,7 +36,7 @@ Add post
             <div class="alert alert-{{session('type')}}">{{session('message')}}</div>  
             @endif
 
-            <form action="{{route('admin.post.store')}}" method="POST"> 
+            <form action="{{route('admin.post.store')}}" method="POST" enctype="multipart/form-data"> 
                 @csrf
                
 

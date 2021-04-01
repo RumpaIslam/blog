@@ -20,7 +20,6 @@ Manage Categories
         <th>Post details</th>
         <th>Image</th>
         <th>More Details</th>
-        
         <th>Status</th>
         <th>Action</th>
     </tr>
@@ -31,7 +30,7 @@ Manage Categories
         <td>{{$post->id}}</td>
         <td>{{$post->title}}</td>
         <td>{{$post->desc}}</td>
-        <td><img src="{{$post->image}}" width="60px"> </td>
+        <td><img src="{{asset('uploads/users/' . $post->image )}}" width="60px"> </td>
 
         <td><a href="#" target="_blank">Click here</a></td>
         <td>{{$post->status}}</td>

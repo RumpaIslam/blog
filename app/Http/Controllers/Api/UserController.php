@@ -32,7 +32,8 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
-            'user_type' => 'required|string',
+       
+            
         ]);
 
         if($validator->fails()){
@@ -42,7 +43,6 @@ class UserController extends Controller
         $user = User::create([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
-            'user_type' => $request->get('user_type'),
             'password' => bcrypt($request->get('password')),
         ]);
 
@@ -75,4 +75,8 @@ class UserController extends Controller
 
                 return response()->json(compact('user'));
         }
+
+
+
+       
 }
