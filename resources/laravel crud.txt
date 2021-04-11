@@ -1,0 +1,63 @@
+
+migration+model+controller create in one command:
+php artisan make:model Post -mc
+
+php artisan make:model Post -msfc
+
+
+
+In create table relational data table 
+
+  	    $table->id();
+            $table->string('name',60);
+            $table->string('slug',60);
+            $table->enum('status',['active','inactive']);
+            $table->timestamps();
+            $table->foreign(columns:'user_id')->on(table:'users')->references(columns:'id')->onDelete(action:'cascade');
+
+
+
+//factory creating->seeding.//
+
+
+
+show from database:>>>
+Category::all(); //load all data from model category;model a table store thake
+Category::where('user_id',17);//user id column name,17 id.that means user_id=17 show 
+
+
+
+laravelpaginate for page number
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+===================================mail===================
+
+mailinstruction link: https://medium.com/@agavitalis/how-to-send-an-email-in-laravel-using-gmail-smtp-server-53d962f01a0c
