@@ -19,7 +19,7 @@
             <a class="nav-link" href="#">Services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">Contact</a>
+            <a class="nav-link" href="{{route('contact-form')}}">Contact</a>
           </li>
           @guest
           <li class="nav-item">

@@ -18,6 +18,11 @@ Route::get('/', function () {
     return view('frontend.home');
 });
 
+//contact
+Route::get('/contact-form', [App\Http\Controllers\ContactController::class, 'contactForm'])->name('contact-form');
+Route::post('/contact-form', [App\Http\Controllers\ContactController::class, 'storeContactForm'])->name('contact-form.store');
+
+
 
 //guest routes
 Route::prefix('user')->name('user.')->group(function(){

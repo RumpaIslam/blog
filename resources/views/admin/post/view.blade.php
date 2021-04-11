@@ -17,14 +17,7 @@ view Categories
             <td>{{ $post->desc }}</td>
         </tr>
         
-
-        
-
-
-
     </table>
-
-
 
 </div>
 
