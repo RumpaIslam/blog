@@ -12,7 +12,7 @@
             <div class="col-8 offset-2 mt-5">
                 <div class="card">
                     <div class="card-header bg-info">
-                        <h3 class="text-white">CONTACT FORM</h3>
+                        <h3 class="text-white">CONTACT US</h3>
                     </div>
                     <div class="card-body">
                         
