@@ -1,4 +1,7 @@
 
+<h2>{{$user_message}}</h2><br><br>
+
+
 You received an email from : {{ $name }} <br><br>
 
 User details: <br><br>
