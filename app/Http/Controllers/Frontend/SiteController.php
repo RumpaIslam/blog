@@ -13,13 +13,13 @@ class SiteController extends Controller
 {
     public function showRegisterForm()
     {
-        return view(view:'frontend.auth.register');
+        return view ('frontend.auth.register');
     }
 
 
     public function register(Request $request)
     {
-        $photo= $request ->file(key:'photo');
+        $photo= $request ->file('photo');
         
         $request->validate([
 

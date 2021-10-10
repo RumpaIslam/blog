@@ -57,7 +57,7 @@ class PostController extends Controller
 
         ]);
 //dd($request);
-         $photo = $request ->file(key:'image');
+         $photo = $request ->file('image');
 
         if($photo->isValid()){
 
